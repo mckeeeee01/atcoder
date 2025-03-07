@@ -1,8 +1,5 @@
 n,q = map(int, input().split())
 
-# box_to_label : i 番目の巣に入っているラベル鳩の番号
-# label_to_box : i 番目のラベル鳩が入っている巣の番号
-# pigeon_to_box : i 番目の鳩が入っている巣の番号
 box_to_label = list(range(n))
 label_to_box = list(range(n))
 pigeon_to_box = list(range(n))
