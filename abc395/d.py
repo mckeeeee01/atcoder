@@ -1,29 +1,26 @@
-# n, q = map(int, input().split())
+n,q = map(int, input().split())
 
-# op = [list(map(int, input().split())) for _ in range(q)]
+# box_to_label : i 番目の巣に入っているラベル鳩の番号
+# label_to_box : i 番目のラベル鳩が入っている巣の番号
+# pigeon_to_box : i 番目の鳩が入っている巣の番号
+box_to_label = list(range(n))
+label_to_box = list(range(n))
+pigeon_to_box = list(range(n))
 
-# pision_dict = {} # key:pison_num, value:box_num
-
-
-
-# for i in range(n):
-#     pision_dict[i] = i
-
-# # d_swap = {v: k for k, v in d.items()}
-
-# #pision_dict shows location
-# print(pision_dict)
-# for i in range(q):
-#     if op[i][0] == 1:
-#         a_pison_key = op[i][1]
-#         b_box_value = op[i][2]
-#         pision_dict.pop(a_pison_key)
-#         pision_dict.setdefault(a_pison_key,b_box_value)
-#     elif op[i][0] == 2:
-        
-
-#     elif op[i][0] == 3:
-#         pass
-    
-
-    
+for _ in range(q):
+	query = list(map(int, input().split()))
+	query_type = query[0]
+	if query_type == 1:
+		pigeon, to = query[1], query[2]
+		pigeon_to_box[pigeon - 1] = label_to_box[to - 1]
+	elif query_type == 2:
+		label0, label1 = query[1], query[2]
+		label_to_box[label0 - 1], label_to_box[label1 - 1] = label_to_box[label1 - 1], label_to_box[label0 - 1]
+		box_index0 = label_to_box[label0 - 1]
+		box_index1 = label_to_box[label1 - 1]
+		box_to_label[box_index0], box_to_label[box_index1] = box_to_label[box_index1], box_to_label[box_index0]
+	else:  # query_type == 3
+		pigeon = query[1]
+		box_index = pigeon_to_box[pigeon - 1]
+		label = box_to_label[box_index] + 1
+		print(label)
