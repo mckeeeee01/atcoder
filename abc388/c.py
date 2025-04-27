@@ -11,3 +11,4 @@ for i in a:
     ans += j
 
 print(ans)
+
